@@ -143,3 +143,7 @@ textarea.mm-in.notes{resize:vertical}
 .mm-legal .updated{color:var(--brown);font-weight:600;margin-bottom:28px}
 .mm-legal .box{background:#fff;border:2px solid var(--green);border-radius:16px;padding:20px 24px;margin:12px 0}
 a[href^="tel:"]:not(.mm-bigbtn),a[href^="sms:"]{white-space:nowrap}
+
+@media (max-width:700px){.mm-thanks{text-align:center;padding:44px 24px}.mm-thanks-text{align-items:center !important}}
+.mm-choice{display:flex;gap:12px;flex-wrap:wrap}
+.mm-choice button{flex:1 1 140px;font-family:var(--script);font-size:28px;line-height:1.1;border:0;border-radius:999px;padding:12px 24px;min-height:52px;cursor:pointer;color:#fff}

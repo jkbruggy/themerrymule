@@ -70,6 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div style="display:flex;flex-direction:column;gap:14px;margin-top:6px;width:100%;max-width:520px">
 <a class="mm-bigbtn" href="#spruce" data-jump="spruce" style="background:var(--red)">Get The Merry Mule Moving!</a>
 <a class="mm-bigbtn" href="tel:+18435643104" data-call="hero" style="background:var(--green)">Haul Call: <span style="white-space:nowrap">(843) 564-3104</span></a>
+<a class="mm-bigbtn" href="/quick" style="background:var(--red)">Quick Form</a>
 </div>
 <div class="mm-socials">
 <a href="https://www.youtube.com/@TheMerryMule" target="_blank" rel="noopener" aria-label="The Merry Mule on YouTube" title="YouTube" style="background:var(--red)"><img src="/img/yt.png" alt="" style="width:30px;height:auto"></a>
@@ -136,8 +137,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <button type="button" class="mm-circ back" aria-label="Back"></button>
 <div class="mm-fields"><fieldset style="margin:0;padding:0;border:0;display:flex;flex-wrap:wrap;column-gap:24px;row-gap:0">
 <legend style="font-weight:600;font-size:18px;padding:0;margin-bottom:6px">Do you already have your tree?</legend>
-<label class="mm-radio"><input type="radio" name="tree" value="yes">Yes, I've bought it. Just deliver it!</label>
-<label class="mm-radio"><input type="radio" name="tree" value="no">No, I need help picking one (+$15)</label>
+<label class="mm-radio"><input type="radio" name="tree" value="yes">Yes</label>
+<label class="mm-radio"><input type="radio" name="tree" value="no">No</label>
 </fieldset></div>
 <button type="button" class="mm-circ next" aria-label="Next"></button>
 </div>
@@ -150,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <div class="mm-page" data-page="7" data-req="height" hidden>
 <button type="button" class="mm-circ back" aria-label="Back"></button>
-<div class="mm-fields"><label class="mm-lbl">Tree height<select class="mm-in" name="height"><option value="">Choose a height</option><option>Under 6 ft</option><option>6 to 7 ft</option><option>7 to 8 ft</option><option>8 to 9 ft</option><option>Over 9 ft</option></select></label></div>
+<div class="mm-fields"><label class="mm-lbl"><span id="mm-heightlabel">About how tall is your tree?</span><input class="mm-in" type="text" name="height" placeholder="About 7 feet" enterkeyhint="next"></label></div>
 <button type="button" class="mm-circ next" aria-label="Next"></button>
 </div>
 
@@ -192,7 +193,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div style="flex:1 1 200px;min-width:0;display:flex;justify-content:center;position:relative;z-index:1">
 <img src="/img/logo-circle.png" alt="The Merry Mule logo" style="width:100%;max-width:260px;height:auto;border-radius:50%;background:#fff">
 </div>
-<div style="flex:2 1 280px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:relative;z-index:1">
+<div class="mm-thanks-text" style="flex:2 1 280px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:16px;position:relative;z-index:1">
 <p class="script" style="margin:0;font-size:clamp(40px,6vw,56px);line-height:1.1">The Merry Mule<br>is on the move!</p>
 <p style="margin:0;font-size:19px;max-width:440px">Thanks for choosing The Merry Mule. We can't wait to make your holiday bright!</p>
 <button type="button" id="mm-again" style="font:inherit;font-weight:700;font-size:17px;background:#fff;color:var(--green);border:0;border-radius:999px;padding:12px 24px;min-height:48px;cursor:pointer">Book another delivery</button>

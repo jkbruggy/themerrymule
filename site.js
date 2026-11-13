@@ -81,7 +81,7 @@ var MM_CONFIG = {
   /* ===== Request form ===== */
   var form = $('#mm-form');
   if (!form) return;
-  var pages = $$('.mm-page', form), N = pages.length, pg = 1, started = false;
+  var pages = $$('.mm-page', form), N = pages.length, pg = 1, started = false, fromQuick = false;
   var nudge = $('#mm-nudge'), thanks = $('#mm-thanks'), submitBtn = $('#mm-submit');
   var MSGS = [[0, "Let's get The Merry Mule moving!"], [1, 'Hitching up the mule...'], [15, 'Loading the wagon...'], [30, 'Checking the route...'], [45, 'Packing the hot cocoa...'], [60, 'Saddling up...'], [75, 'Almost ready to roll!'], [90, 'One more stop!'], [100, "All set! We'll be on our way soon."]];
   var NEXT = '<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>';
@@ -97,7 +97,7 @@ var MM_CONFIG = {
   function isDone(k) {
     if (k === 'tree') return treeVal() !== '';
     if (k === 'consent') return form.elements.consent_service.checked;
-    if (k === 'lot' && treeVal() === 'no') return true;
+    if ((k === 'lot' || k === 'height') && treeVal() === 'no') return true;
     if (k === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'));
     if (k === 'phone') return val('phone').replace(/\D/g, '').length >= 10;
     return val(k) !== '';
@@ -112,6 +112,7 @@ var MM_CONFIG = {
     $('#mm-tripmsg').textContent = msg;
     $('#mm-wagon').style.left = (12 + 45 * (pct / 100)).toFixed(1) + '%';
     $('#mm-lotlabel').textContent = treeVal() === 'no' ? 'Tree lot (optional)' : 'Which tree lot?';
+    $('#mm-heightlabel').textContent = treeVal() === 'no' ? 'About how tall would you like your tree?' : 'About how tall is your tree?';
   }
   function showNudge(text) { nudge.textContent = text; nudge.hidden = false; }
   function hideNudge() { nudge.hidden = true; }
@@ -156,7 +157,7 @@ var MM_CONFIG = {
     if (val('company')) { done(); return; } // spam bot
     var data = {
       first: val('first'), last: val('last'), phone: val('phone'), email: val('email'),
-      address: val('address'), has_tree: treeVal() === 'yes' ? 'Yes' : 'No, needs shopping help',
+      form_type: fromQuick ? 'Detailed (after Quick Form)' : 'Detailed', address: val('address'), has_tree: treeVal() === 'yes' ? 'Yes' : 'No',
       lot: val('lot'), height: val('height'), wreaths: val('wreaths'), date: val('date'), notes: val('notes'),
       consent_service: form.elements.consent_service.checked ? 'Yes' : 'No',
       consent_marketing: form.elements.consent_marketing.checked ? 'Yes' : 'No',
@@ -182,5 +183,21 @@ var MM_CONFIG = {
     submitBtn.disabled = false; submitBtn.textContent = 'Bring My Tree Home!';
     thanks.hidden = true; form.hidden = false; show(1);
   });
+  /* Prefill from the Quick Form when the customer chose to add more detail */
+  try {
+    var q = JSON.parse(sessionStorage.getItem('mmQuick') || 'null');
+    if (q && location.hash === '#details') {
+      sessionStorage.removeItem('mmQuick');
+      var parts = String(q.name || '').trim().split(/\s+/);
+      form.elements.first.value = parts.shift() || '';
+      form.elements.last.value = parts.join(' ');
+      form.elements.phone.value = q.phone || '';
+      form.elements.email.value = q.email || '';
+      form.elements.consent_service.checked = q.consent_service === 'Yes';
+      form.elements.consent_marketing.checked = q.consent_marketing === 'Yes';
+      started = true; fromQuick = true;
+      setTimeout(function () { show(4); var sp = document.getElementById('spruce'); if (sp) sp.scrollIntoView({ block: 'start' }); }, 50);
+    }
+  } catch (x) {}
   update();
 })();

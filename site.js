@@ -1,7 +1,7 @@
 /* ===== The Merry Mule: easy-to-edit settings ===== */
 var MM_CONFIG = {
   // Google Apps Script web app URL that saves form requests to the Google Sheet
-  formEndpoint: 'PASTE_APPS_SCRIPT_URL_HERE',
+  formEndpoint: 'https://script.google.com/macros/s/AKfycbyzwssvNi2FhKbehbcLOIPVpn_CrfeaIeHcEiWuyPx0MTBF3xP8xthqlI5eTt3E6wCaSg/exec',
   muleStatus: 'Right now The Merry Mule is delivering on Johns Island!',
   muleUpdated: '11/11/2026 at 2:14 PM',
   milestones: [

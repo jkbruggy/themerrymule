@@ -44,13 +44,26 @@ var MM_CONFIG = {
     el.innerHTML = h;
   });
 
-  /* Mule status + milestones */
-  var ms = $('#mm-mule-status'); if (ms) ms.textContent = MM_CONFIG.muleStatus;
-  var mu = $('#mm-mule-updated'); if (mu) mu.textContent = MM_CONFIG.muleUpdated;
-  var mw = $('#mm-milestones');
-  if (mw) mw.innerHTML = MM_CONFIG.milestones.map(function (m) {
-    return '<div class="mm-card" style="align-items:center;gap:6px"><p style="margin:0;font-family:var(--head);font-weight:700;font-size:64px;line-height:1;color:var(--red)">' + m.value + '</p><p style="margin:0;font-size:20px;font-weight:700;color:var(--green)">' + m.label + '</p></div>';
-  }).join('');
+  /* Mule status + milestones (live values come from the Website tab of the Google Sheet) */
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function renderMule() {
+    var ms = $('#mm-mule-status'); if (ms) ms.textContent = MM_CONFIG.muleStatus;
+    var mu = $('#mm-mule-updated'); if (mu) mu.textContent = MM_CONFIG.muleUpdated;
+    var mw = $('#mm-milestones');
+    if (mw) mw.innerHTML = MM_CONFIG.milestones.map(function (m) {
+      return '<div class="mm-card" style="align-items:center;gap:6px"><p style="margin:0;font-family:var(--head);font-weight:700;font-size:64px;line-height:1;color:var(--red)">' + esc(m.value) + '</p><p style="margin:0;font-size:20px;font-weight:700;color:var(--green)">' + esc(m.label) + '</p></div>';
+    }).join('');
+  }
+  renderMule();
+  if ($('#mm-mule-status') || $('#mm-milestones')) {
+    fetch(MM_CONFIG.formEndpoint, { method: 'GET' }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d) return;
+      if (d.muleStatus) MM_CONFIG.muleStatus = d.muleStatus;
+      if (d.muleUpdated) MM_CONFIG.muleUpdated = d.muleUpdated;
+      ['trees', 'wreaths', 'homes'].forEach(function (k, i) { if (d[k] !== undefined && d[k] !== '') MM_CONFIG.milestones[i].value = d[k]; });
+      renderMule();
+    }).catch(function () {});
+  }
 
   /* Menu + jump links */
   var burger = $('#mm-burger'), menu = $('#mm-menu');

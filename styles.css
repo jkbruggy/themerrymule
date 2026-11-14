@@ -1,4 +1,4 @@
-/* The Merry Mule — shared styles */
+/* The Merry Mule : shared styles */
 :root{--red:#B3262C;--green:#1F4D3A;--brown:#684625;--cream:#F5EFE0;--white:#FFFFFF;--ink:#2A2420;--head:'Cinzel Decorative',serif;--script:'Redressed',cursive}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -147,3 +147,25 @@ a[href^="tel:"]:not(.mm-bigbtn),a[href^="sms:"]{white-space:nowrap}
 @media (max-width:700px){.mm-thanks{text-align:center;padding:44px 24px}.mm-thanks-text{align-items:center !important}}
 .mm-choice{display:flex;gap:12px;flex-wrap:wrap}
 .mm-choice button{flex:1 1 140px;font-family:var(--script);font-size:28px;line-height:1.1;border:0;border-radius:999px;padding:12px 24px;min-height:52px;cursor:pointer;color:#fff}
+
+/* update 8 */
+.mm-faqlist{margin:8px 0 0;padding-left:22px}
+.mm-faqlist li{margin:0 0 6px}
+.mm-promise{background:var(--cream);border:2px dashed var(--red);border-radius:14px;padding:12px 16px;text-align:center;font-size:15px}
+.mm-promise p{margin:0}
+.mm-promise .script{font-size:26px;line-height:1.1;color:var(--red);margin-bottom:4px}
+.mm-morefaq{margin:8px 0 0;display:flex;justify-content:center}
+.mm-morefaq .mm-bigbtn{display:inline-block}
+.mm-faqpage{max-width:880px;margin:0 auto;padding:64px 24px 80px;display:flex;flex-direction:column;gap:22px}
+.mm-faqpage h2.grp{margin:24px 0 0;font-family:var(--head);font-weight:700;font-size:24px;color:var(--red)}
+.mm-legal .tag{display:inline-block;background:var(--green);color:#fff;border-radius:999px;padding:2px 12px;font-size:13px;font-weight:700;letter-spacing:.03em}
+.mm-legal h3{margin:22px 0 6px;font-size:19px;color:var(--red)}
+.mm-culture .big{font-family:var(--script);color:var(--red);font-size:clamp(30px,5vw,44px);text-align:center;margin:18px 0}
+.mm-culture .standard{font-weight:700;color:var(--green)}
+.mm-culture .logo{display:block;margin:0 auto 18px;width:180px;max-width:60%;height:auto}
+.mm-culture .sub{font-family:var(--script);font-size:26px;color:var(--red);margin:0 0 4px}
+.mm-waiver .mm-form{margin-top:28px}
+.mm-rgroup{display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:16px;font-weight:400;text-align:left;width:100%}
+.mm-rgroup label{display:flex;align-items:center;gap:10px;min-height:40px;cursor:pointer}
+.mm-rgroup input,.mm-waiver .mm-check input{width:20px;height:20px;flex:0 0 20px;accent-color:var(--green)}
+.mm-waiver .mm-check{font-size:14px}

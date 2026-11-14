@@ -1,1 +1,31 @@
-{"cleanUrls": true, "trailingSlash": false}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/faqs",
+      "destination": "/faq",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/cancellations",
+      "destination": "/terms#cancellations",
+      "permanent": false
+    },
+    {
+      "source": "/refunds",
+      "destination": "/terms#cancellations",
+      "permanent": false
+    },
+    {
+      "source": "/photo-waiver",
+      "destination": "/waiver",
+      "permanent": true
+    }
+  ]
+}
